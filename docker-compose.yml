@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  web:
+    image: ${DOCKER_REGISTRY-}bookclub
+    build:
+      context: .
+      dockerfile: src/Lanre.Web/Dockerfile
