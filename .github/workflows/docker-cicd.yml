@@ -1,4 +1,4 @@
-name: App Admin Api Docker
+name: App Docker
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker compose build admin.api
+      run: docker compose build web
     - name: Log into registry
       if: github.event_name != 'pull_request'
       uses: docker/login-action@v1
