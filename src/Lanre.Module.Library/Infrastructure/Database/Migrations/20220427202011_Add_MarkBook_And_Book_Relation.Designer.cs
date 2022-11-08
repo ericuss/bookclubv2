@@ -24,7 +24,7 @@ namespace Lanre.Module.Library.Infrastructure.Database.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Lanre.Context.Library.Domain.Book", b =>
+            modelBuilder.Entity("Lanre.Module.Library.Domain.Book", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -96,7 +96,7 @@ namespace Lanre.Module.Library.Infrastructure.Database.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Lanre.Context.Library.Domain.MarkBook", b =>
+            modelBuilder.Entity("Lanre.Module.Library.Domain.MarkBook", b =>
                 {
                     b.Property<Guid>("BookId")
                         .HasColumnType("uniqueidentifier");
@@ -120,9 +120,9 @@ namespace Lanre.Module.Library.Infrastructure.Database.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Lanre.Context.Library.Domain.MarkBook", b =>
+            modelBuilder.Entity("Lanre.Module.Library.Domain.MarkBook", b =>
                 {
-                    b.HasOne("Lanre.Context.Library.Domain.Book", "Book")
+                    b.HasOne("Lanre.Module.Library.Domain.Book", "Book")
                         .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)

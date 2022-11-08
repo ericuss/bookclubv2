@@ -9,7 +9,8 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["src/Lanre.Web/Lanre.Web.csproj", "src/Lanre.Web/"]
 COPY ["src/Lanre.Infrastructure/Lanre.Infrastructure.csproj", "src/Lanre.Infrastructure/"]
-COPY ["src/Lanre.Context.Library/Lanre.Context.Library.csproj", "src/Lanre.Context.Library/"]
+COPY ["src/Lanre.Module.Library/Lanre.Module.Library.csproj", "src/Lanre.Module.Library/"]
+COPY ["src/Lanre.Module.Poll/Lanre.Module.Poll.csproj", "src/Lanre.Module.Poll/"]
 RUN dotnet restore "src/Lanre.Web/Lanre.Web.csproj"
 COPY . .
 WORKDIR "/src/src/Lanre.Web"

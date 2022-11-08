@@ -24,7 +24,7 @@ namespace Lanre.Module.Library.Infrastructure.Database.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Lanre.Context.Library.Domain.Book", b =>
+            modelBuilder.Entity("Lanre.Module.Library.Domain.Book", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
