@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-public static class VoteEndpoint
+public class VoteEndpoint
 {
     public static async Task<IResult> Handle(
         [FromServices] IHttpContextAccessor contextAccessor,
-        [FromServices] ILogger logs,
+        [FromServices] ILogger<VoteEndpoint> logs,
         [FromServices] PollContext pollContext,
         [FromBody] VoteDto dto,
         CancellationToken cancellationToken
@@ -20,7 +20,7 @@ public static class VoteEndpoint
     {
         var userId = contextAccessor.HttpContext?.User?.Identity?.Name;
 
-        if (string.IsNullOrWhiteSpace(dto.Id) || Guid.TryParse(dto.Id, out var  votelistId)|| !dto.ReadedIds.Any())
+        if (string.IsNullOrWhiteSpace(dto.Id) || !Guid.TryParse(dto.Id, out var  votelistId)|| !dto.ReadedIds.Any())
         {
             logs.LogWarning("Validation failed");
             return Results.BadRequest();
@@ -33,7 +33,7 @@ public static class VoteEndpoint
             return Results.BadRequest();
         }
 
-        if (voteList.NumberOfVotes >= dto.VotedIds.Count)
+        if (voteList.NumberOfVotes <= dto.VotedIds.Count)
         {
             logs.LogWarning($"voted {dto.VotedIds.Count} of {voteList.NumberOfVotes}");
             return Results.BadRequest();

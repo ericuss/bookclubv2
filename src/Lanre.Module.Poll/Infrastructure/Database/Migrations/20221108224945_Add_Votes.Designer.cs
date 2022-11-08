@@ -4,6 +4,7 @@ using Lanre.Module.Poll.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lanre.Module.Poll.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(PollContext))]
-    partial class PollContextModelSnapshot : ModelSnapshot
+    [Migration("20221108224945_Add_Votes")]
+    partial class Add_Votes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

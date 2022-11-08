@@ -8,7 +8,7 @@ export interface UseVoteListType {
     state: VoteList | null;
     setState: React.Dispatch<React.SetStateAction<VoteList | null>>;
     loadVoteList(id: string): Promise<void>;
-    submitVotes(id: string, bookIds: string[]): Promise<void>;
+    submitVotes(id: string, votedIds: string[], readedIds: string[], blockedIds: string[]): Promise<void>;
 }
 
 export function useVoteList(): UseVoteListType {
