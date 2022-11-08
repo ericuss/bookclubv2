@@ -11,6 +11,14 @@ internal static class Mapper
         {
             Id = entity.Id,
             Name = entity.Name,
+            Series = entity.Series,
+            Authors = entity.Authors,
+            Rating = entity.Rating,
+            Sinopsis = entity.Sinopsis,
+            ImageUrl = entity.ImageUrl,
+            Url = entity.Url,
+            Pages = entity.Pages,
+            UserId = entity.UserId
         };
     }
 }

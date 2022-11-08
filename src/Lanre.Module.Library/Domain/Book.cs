@@ -1,6 +1,6 @@
 namespace Lanre.Module.Library.Domain;
 
-public class Book
+public class Book : Lanre.Infrastructure.Domain.IBook
 {
     private Book()
     {
@@ -105,49 +105,56 @@ public class Book
 
         public Builder SetName(string? name)
         {
-            this.name = name;
+            this.name = cleanText(name);
             return this;
         }
 
         public Builder SetSeries(string? series)
         {
-            this.series = series;
+            this.series = cleanText(series);
             return this;
         }
         public Builder SetAuthors(string? authors)
         {
-            this.authors = authors;
+            this.authors = cleanText(authors);
             return this;
         }
         public Builder SetRating(string? rating)
         {
-            this.rating = rating;
+            this.rating = cleanText(rating);
             return this;
         }
         public Builder SetSinopsis(string? sinopsis)
         {
-            this.sinopsis = sinopsis;
+            this.sinopsis = cleanText(sinopsis);
             return this;
         }
         public Builder SetImageUrl(string? imageUrl)
         {
-            this.imageUrl = imageUrl;
+            this.imageUrl = cleanText(imageUrl);
             return this;
         }
         public Builder SetUrl(string? url)
         {
-            this.url = url;
+            this.url = cleanText(url);
             return this;
         }
         public Builder SetPages(string? pages)
         {
-            this.pages = pages;
+            this.pages = cleanText(pages);
             return this;
         }
         public Builder SetUserId(string? userId)
         {
-            this.userId = userId;
+            this.userId = cleanText(userId);
             return this;
+        }
+
+        private string cleanText(string? text)
+        {
+            if (text == null) text = string.Empty;
+
+            return text.Replace("\n", "").Trim();
         }
 
         public Book Build()

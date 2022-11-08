@@ -11,6 +11,12 @@ public class MarkBookMapping : IEntityTypeConfiguration<MarkBook>
     {
         builder.ToTable("MarkBooks", "library");
         builder.HasKey(x => new { x.BookId, x.UserId, x.Marked });
+
+        builder.HasOne(x => x.Book)
+                .WithMany()
+                .HasForeignKey(x => x.BookId)
+                .IsRequired();
+
         Data(builder);
     }
 
@@ -21,11 +27,6 @@ public class MarkBookMapping : IEntityTypeConfiguration<MarkBook>
                 .SetUserId("251963be-2c3e-435f-9da7-a62bec3d508a")
                 .SetMarked(MarkBookTypes.Readed)
                 .Build();
-
-        builder.HasOne(x => x.Book)
-                .WithMany()
-                .HasForeignKey(x => x.BookId)
-                .IsRequired();
 
         builder.HasData(markBook1);
     }

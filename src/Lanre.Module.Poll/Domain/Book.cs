@@ -1,25 +1,26 @@
-﻿namespace Lanre.Module.Poll.Domain
+using Lanre.Infrastructure.Domain;
+
+namespace Lanre.Module.Poll.Domain;
+
+public class Book:IBook
 {
-    public class Book
-    {
-        public Guid Id { get; set; }
+    public Guid Id { get; internal set; }
 
-        public string Name { get; set; }
+    public string Name { get; internal set; }
 
-        public string? Series { get; set; }
+    public string? Series { get; internal set; }
 
-        public string? Authors { get; set; }
+    public string? Authors { get; internal set; }
 
-        public string? Rating { get; set; }
+    public string? Rating { get; internal set; }
 
-        public string? Sinopsis { get; set; }
+    public string? Sinopsis { get; internal set; }
 
-        public string? ImageUrl { get; set; }
+    public string? ImageUrl { get; internal set; }
 
-        public string? Url { get; set; }
+    public string? Url { get; internal set; }
 
-        public string? Pages { get; set; }
+    public string? Pages { get; internal set; }
 
-        public string UserId { get; set; }
-    }
+    public string UserId { get; internal set; }
 }

@@ -1,9 +1,5 @@
 
 import axios, { AxiosResponse } from 'axios';
-import { json } from 'stream/consumers';
-
-
-
 
 const token = () =>{
 	const key = Object.keys(sessionStorage).find(x => x.startsWith('oidc.user:'));
@@ -18,6 +14,7 @@ const config = {
 	// baseURL: 'http://host.docker.internal:8080/api/',
 	// baseURL: 'https://localhost:7043/api/',
 	// baseURL: '/api/',
+	baseUrl: window.location.origin,
 	timeout: 15000,
 	headers: {
 		'Content-Type': 'application/json',
@@ -28,8 +25,6 @@ const config = {
 	// withCredentials: true
 };
 
-console.log(config)
-
 const selfWindow: Window = window;
 
 export const Instance = axios.create(config);
@@ -39,7 +34,7 @@ Instance.interceptors.response.use((response) => {
 }, (error) => { // Anything except 2XX goes to here
 	const status = error.response?.status || 500;
 	if (status === 401) {
-		selfWindow.location = window.location.protocol + "//" + window.location.host + "/public/sign-in";
+		selfWindow.location = window.location.protocol + "//" + window.location.host + "/sign-in";
 	} else {
 		return Promise.reject(error); // Delegate error to calling side
 	}

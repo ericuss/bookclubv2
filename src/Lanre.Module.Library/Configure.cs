@@ -4,6 +4,8 @@ using Lanre.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Samples.Services;
+using Lanre.Module.Library.Application.Books;
 
 namespace Lanre.Module.Library;
 public static class Configure
@@ -13,9 +15,12 @@ public static class Configure
     {
         var sqlOptions = configuration.GetSection(SqlSectionKey).Get<SqlOptions>();
         return services
-                .Configure<SqlOptions>(configuration.GetSection(SqlSectionKey))
                 .RegisterDB(sqlOptions)
-                ;
+                .Configure<SqlOptions>(configuration.GetSection(SqlSectionKey))
+                .AddSingleton<IBookAccumulatorQueue, BookAccumulatorQueue>()
+                .AddSingleton<ImportBookFeature>()
+                .AddHostedService<AccumulatorBackgroundService>();
+        ;
     }
 
     private static IServiceCollection RegisterDB(this IServiceCollection services, SqlOptions sqlOptions)

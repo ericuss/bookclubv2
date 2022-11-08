@@ -1,15 +1,16 @@
 export interface Book {
-    Id: string;
-    Title: string;
-    Series: string;
-    Authors: string;
-    Rating: string;
-    Sinopsis: string;
-    ImageUrl: string;
-    Url: string;
-    Pages: string;
-    Username: string;
-    Readed?: string[];
+    id: string;
+    name: string;
+    series: string;
+    authors: string;
+    rating: string;
+    sinopsis: string;
+    imageUrl: string;
+    url: string;
+    pages: string;
+    username: string;
+    readed?: string[];
+    selected: boolean;
 }
 
 export interface Window {
@@ -22,13 +23,13 @@ export interface Token {
 }
 
 export interface VoteList {
-    Id: string;
-    UserId: string;
-    Title: string;
-    NumberOfVotes: number;
-    Books: BookFromVoteList[];
+    id: string;
+    userId: string;
+    name: string;
+    numberOfVotes: number;
+    books: BookFromVoteList[];
 }
 
 export interface BookFromVoteList extends Book {
-    VotedBy?: string[];
+    votedBy?: string[];
 }

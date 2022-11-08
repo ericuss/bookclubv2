@@ -9,13 +9,24 @@ using Microsoft.AspNetCore.Mvc;
 public static class CreateVoteListEndpoint
 {
     public static async Task<IResult> Handle(
+        [FromServices] IHttpContextAccessor contextAccessor,
         [FromServices] PollContext pollContext,
         [FromBody] CreateDto dto
     )
     {
+        var userId = contextAccessor.HttpContext?.User?.Identity?.Name;
+
+        if (string.IsNullOrWhiteSpace(dto.Name) || string.IsNullOrWhiteSpace(userId) || !dto.Books.Any())
+        {
+            return Results.BadRequest();
+        }
+
+
         var entity = new Domain.VoteList.Builder()
            .SetName(dto.Name)
-           .SetUserId(dto.UserId)
+           .SetUserId(userId)
+           .SetNumberOfVotes(dto.NumberOfVotes)
+           .SetBookIds(dto.Books)
            .Build();
 
         pollContext.VoteLists.Add(entity);

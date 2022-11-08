@@ -6,7 +6,7 @@ export interface ImportBookRequest {
 	url: string;
 }
 
-export const path = 'api/books';
+export const path = '/api/books';
 
 export const BooksService = {
 	get: (): Promise<Book[]> => Requests.get(path),

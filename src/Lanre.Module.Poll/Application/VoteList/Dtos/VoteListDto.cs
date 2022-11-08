@@ -6,5 +6,7 @@ public class VoteListDto
     
     public string? Name { get; set; }
 
+    public int NumberOfVotes { get; set; }
+
     public string? UserId { get; set; }
 }

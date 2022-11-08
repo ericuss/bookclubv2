@@ -1,0 +1,13 @@
+.vote-vote-list-books{
+    display: flex;
+    justify-content: flex-start;
+    gap:2rem;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.readed, .bloqued{
+    background-color: rgb(143, 37, 37) !important;
+    color: #fff !important;
+}

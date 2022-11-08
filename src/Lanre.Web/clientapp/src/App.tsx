@@ -25,16 +25,6 @@ export default function App() {
 
   return (
     <div className="App">
-      {
-        auth.isAuthenticated
-          ? <div>
-            Hello {auth.user?.profile.sub}{" "}
-            <button onClick={() => void auth.removeUser()}>Log out</button>
-          </div>
-
-          : <button onClick={() => void auth.signinRedirect()}>Log in</button>
-      }
-
       <Main />
 
     </div>

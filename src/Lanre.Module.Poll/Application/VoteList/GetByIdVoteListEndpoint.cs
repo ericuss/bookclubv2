@@ -11,12 +11,16 @@ public static class GetByIdVoteListEndpoint
 {
     public static async Task<IResult> Handle(
         [FromServices] PollContext pollContext,
-        [FromBody] GetByIdDto dto
+        [FromRoute] Guid id
     )
     {
-        var entity = await pollContext.VoteLists.FirstAsync(x => x.Id == dto.Id);
+        var entity = await pollContext
+                            .VoteLists
+                            .Include( x=> x.Books)
+                                .ThenInclude( x=> x.Book)
+                            .FirstAsync(x => x.Id == id);
 
-        return Results.Ok(Mapper.MapTo(entity));
+        return Results.Ok(Mapper.MapToVoteListWithBooks(entity));
     }
 }
 

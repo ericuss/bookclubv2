@@ -93,7 +93,7 @@ namespace Lanre.Module.Library.Infrastructure.Database.Migrations
                 keyColumn: "Id",
                 keyValue: new Guid("332fb5ab-2eab-4393-a920-9b46faed3cb5"),
                 columns: new[] { "Authors", "ImageUrl", "Pages", "Rating", "Series", "Sinopsis", "Url", "UserId" },
-                values: new object[] { "Orson Scott Card", "http://google.es", "XXX", "5", "Ender", "", "http://google.es", "0000000000" });
+                values: new object[] { "Orson Scott Card", "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1408303130l/375802._SY475_.jpg", "XXX", "5", "Ender", "", "https://www.goodreads.com/book/show/375802.Ender_s_Game", "0000000000" });
 
             migrationBuilder.UpdateData(
                 schema: "library",
@@ -101,7 +101,7 @@ namespace Lanre.Module.Library.Infrastructure.Database.Migrations
                 keyColumn: "Id",
                 keyValue: new Guid("8bddba00-f200-402d-b45b-6f1634a5f622"),
                 columns: new[] { "Authors", "ImageUrl", "Pages", "Rating", "Series", "Sinopsis", "Url", "UserId" },
-                values: new object[] { "Brandon Sanderson", "http://google.es", "XXX", "5", "Nacidos de la bruma", "", "http://google.es", "0000000000" });
+                values: new object[] { "Brandon Sanderson", "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1258916788l/7183286.jpg", "XXX", "5", "Nacidos de la bruma", "", "https://www.goodreads.com/book/show/7183286-el-imperio-final", "0000000000" });
 
             migrationBuilder.InsertData(
                 schema: "library",
