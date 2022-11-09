@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   web:
-    image: ${DOCKER_REGISTRY-}/lanre-bookstore:${TAG-}
+    image: ${DOCKER_REGISTRY-}/lanre-bookstore:${TAG:-latest}
     build:
       context: .
       dockerfile: src/Lanre.Web/Dockerfile
