@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/Lanre.Context.Library/Lanre.Context.Library.csproj",
+                "${workspaceFolder}/src/Lanre.Module.Library/Lanre.Module.Library.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/src/Lanre.Context.Library/Lanre.Context.Library.csproj",
+                "${workspaceFolder}/src/Lanre.Module.Library/Lanre.Module.Library.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/src/Lanre.Context.Library/Lanre.Context.Library.csproj"
+                "${workspaceFolder}/src/Lanre.Module.Library/Lanre.Module.Library.csproj"
             ],
             "problemMatcher": "$msCompile"
         },

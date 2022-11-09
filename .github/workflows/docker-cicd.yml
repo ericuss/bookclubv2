@@ -1,0 +1,56 @@
+name: App Docker
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+
+env:
+  TAG: ${{ github.run_id }}
+  # DOCKER_REGISTRY: ${{ secrets.ACR_ENDPOINT }}
+
+jobs:
+  build-docker-and-push:
+    runs-on: ubuntu-latest
+    name: Build/Push Docker
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker compose build web
+    - name: Log into registry
+      if: github.event_name != 'pull_request'
+      uses: docker/login-action@v1
+      with:
+        registry: ${{ secrets.ACR_ENDPOINT }}
+        username: ${{ secrets.ACR_USER }}
+        password: ${{ secrets.ACR_PASSWORD }}
+    - name: Push the Docker image
+      if: github.event_name != 'pull_request'
+      run: docker push ${{ secrets.ACR_ENDPOINT }}/lanre-web:${{ env.TAG }}
+
+  # deploy-to-dev:
+  #   needs: build-docker-and-push
+  #   if: github.event_name != 'pull_request'
+  #   runs-on: ubuntu-latest
+  #   name: Deploy to Dev
+  #   steps:
+  #   - uses: actions/checkout@v3
+
+  #   - name: 'Az CLI login'
+  #     uses: azure/login@v1
+  #     with:
+  #       creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}"}'
+
+  #   - name: Set AKS context
+  #     id: set-context
+  #     uses: azure/aks-set-context@v3
+  #     with:
+  #       resource-group: 'rg-zerod'
+  #       cluster-name: 'aks-zerod'
+
+  #   - name: Deploy to aks
+  #     working-directory: ./deploy
+  #     run:  make deploy-admin-api env=dev tag=${{ env.TAG }}

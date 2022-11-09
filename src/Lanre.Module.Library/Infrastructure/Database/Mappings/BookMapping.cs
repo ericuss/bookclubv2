@@ -1,4 +1,4 @@
-﻿namespace Lanre.Context.Library.Infrastructure.Database.Mappings;
+﻿namespace Lanre.Module.Library.Infrastructure.Database.Mappings;
 
 using Lanre.Module.Library.Domain;
 
