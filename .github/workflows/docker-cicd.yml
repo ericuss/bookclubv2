@@ -21,13 +21,13 @@ jobs:
     - name: Build the Docker image
       run: docker compose build web        
     - name: Log into registry
-      if: github.event_name != 'pull_request'
+      #if: github.event_name != 'pull_request'
       uses: docker/login-action@v2.1.0
       with:
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_KEY }}
     - name: Push the Docker image
-      if: github.event_name != 'pull_request'
+      #if: github.event_name != 'pull_request'
       run: docker push ${{ secrets.DOCKER_USER }}/${{ env.REPOSITORY }}:${{ env.TAG }}
 
   # deploy-to-dev:
