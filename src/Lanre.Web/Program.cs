@@ -27,6 +27,7 @@ builder.Services.Configure<AuthOptions>(
 
 // Add services to the container.
 builder.Services
+        .AddApplicationInsightsTelemetry()
         .AddControllers()
         .Services
         .AddEndpointsApiExplorer()
