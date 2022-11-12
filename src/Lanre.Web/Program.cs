@@ -82,6 +82,6 @@ app.RegisterBookRoutes();
 app.RegisterPollRoutes();
 
 app.MapHealthChecks();
-app.MapFallbackToFile("/index.html");
+app.MapFallbackToFile("{*path:regex(^(?!api).*$)}", "index.html");
 
 app.Run();
