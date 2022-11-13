@@ -55,6 +55,7 @@ scope.Dispose();
 
 
 app.UseCustomFixForHttps();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -62,7 +63,6 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -70,9 +70,7 @@ app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bookclub App"));
 
 app.UseStaticFiles();
-
 app.UseHttpsRedirection();
-
 app.UseRouting();
 
 app.UseAuthorization();
@@ -83,5 +81,22 @@ app.RegisterPollRoutes();
 
 app.MapHealthChecks();
 app.MapFallbackToFile("{*path:regex(^(?!api).*$)}", "index.html");
+app.Use(async (context, next) =>
+{
+    string path = context.Request.Path.Value;
 
+    if (!path.StartsWith("/api") && !Path.HasExtension(path))
+    {
+        /* 
+           If this is not an API request or a request for static content (e.g. css/javascript) 
+           then return the index.html of the SPA 
+        */
+        context.Response.ContentType = "text/html";
+        await context.Response.SendFileAsync("wwwroot/index.html");
+    }
+    else
+    {
+        await next.Invoke();
+    }
+});
 app.Run();
