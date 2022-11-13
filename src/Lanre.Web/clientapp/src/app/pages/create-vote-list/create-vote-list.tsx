@@ -11,12 +11,22 @@ export const CreateVoteList: FC = () => {
     const { state: books, setState: setBooks,createVoteList } = useBooks();
 
     function selectBook(bookRaw: Book) {
-        const book = books.find(x => x.id === bookRaw.id);
-        if (book != null) {
-            book.selected = !!!book.selected;
-        }
-
+        
+        console.log(bookRaw)
+        // const book = books.find(x => x.id === bookRaw.id);
+        // if (book != null) {
+        //     console.log('selected')
+        //     book.selected = !!!book.selected;
+        // }
+        books.forEach(book => {
+            if (book.id === bookRaw.id) {
+                console.log('selected')
+                book.selected = !!!book.selected;
+            }
+        });
+       
         setBooks([...books]);
+        console.log(books)
     }
 
     async function createList(e: any) {
@@ -47,7 +57,18 @@ export const CreateVoteList: FC = () => {
                 </Button>
             </Form>
             <div className="book-list">
-                {books.map((b, i) => <BookComponent key={i} book={b} selectBook={(book) => selectBook(book)} />)}
+            {/* <BookComponent key={i} book={b} selectBook={(book) => selectBook(book)} /> */}
+                {books.map((b, i) => 
+                <BookComponent key={i} book={b} classes={b?.selected === true ? 'book-selected' : 'book-not-selected'}>
+                <div className="d-flex flex-column">
+                    <button onClick={() => selectBook(b)} className={"mt-2 btn btn-primary "}>
+                        {b?.selected === true ? 'Selected' : 'Select'}
+                    </button>
+                </div>
+            </BookComponent>
+                
+                
+                )}
             </div>
         </div>
     );
