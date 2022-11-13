@@ -21,7 +21,8 @@ services:
       - https_port=7443
       - Kestrel__Certificates__Default__Path=./certs/devcert.pfx
       - Kestrel__Certificates__Default__Password=Passw@rd
-      - Sql__ConnectionString=${BookClub_DB:-Server=sql;Database=BookClub;User Id=sa;Password=Pass@word}
+      #- Sql__ConnectionString=${BookClub_DB:-Server=sql;Database=BookClub;User Id=sa;Password=Pass@word}
+      - Sql__ConnectionString=Server=tcp:lanrestore.database.windows.net,1433;Initial Catalog=bookstore;Persist Security Info=False;User ID=user;Password=SdWQoXJm5RH4Qcy35qLh;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
     ports:
       - "7080:80"
       - "7443:443"

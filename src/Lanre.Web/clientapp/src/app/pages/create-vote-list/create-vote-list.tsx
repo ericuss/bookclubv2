@@ -8,13 +8,15 @@ import { Book } from "@/app/shared/types/types";
 import { BookForVote } from "../vote-list-detail/types";
 
 export const CreateVoteList: FC = () => {
-    const { state: books, createVoteList, } = useBooks();
+    const { state: books, setState: setBooks,createVoteList } = useBooks();
 
     function selectBook(bookRaw: Book) {
         const book = books.find(x => x.id === bookRaw.id);
         if (book != null) {
             book.selected = !!!book.selected;
         }
+
+        setBooks([...books]);
     }
 
     async function createList(e: any) {
