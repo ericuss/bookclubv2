@@ -8,5 +8,9 @@ public class VoteListDto
 
     public int NumberOfVotes { get; set; }
 
+    public int NumberOfBooks { get; set; }
+
     public string? UserId { get; set; }
+
+    public DateTimeOffset Created { get; set; }
 }

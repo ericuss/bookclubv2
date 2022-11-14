@@ -28,8 +28,16 @@ export interface VoteList {
     name: string;
     numberOfVotes: number;
     books: BookFromVoteList[];
+    numberOfBooks: number;
+    created: string;
 }
 
 export interface BookFromVoteList extends Book {
     votedBy?: string[];
+}
+
+export interface Awards extends VoteList {
+    readed: string[];
+    blocked: string[];
+    voted: string[];
 }

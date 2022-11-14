@@ -32,6 +32,10 @@ const Public = React.lazy(
   () => import('./app/pages/public').then(module => ({ default: module.Public }))
 );
 
+const Awards = React.lazy(
+  () => import('./app/pages/awards/awards').then(module => ({ default: module.Awards }))
+);
+
 const Loading = () => <p>Loading ...</p>;
 
 
@@ -82,6 +86,7 @@ export default function Main() {
             <Route path="/CreateVoteList" element={<CreateVoteList />} />
             <Route path="/Vote" element={<Vote />} />
             <Route path="/vote/:id" element={<VoteListDetail />} />
+            <Route path="/vote/:id/awards" element={<Awards />} />
           </Routes>
 
         </React.Suspense>

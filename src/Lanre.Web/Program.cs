@@ -40,7 +40,15 @@ builder.Services
         //.AddScoped<IActionContextAccessor, ActionContextAccessor>()
         .AddHttpContextAccessor()
         ;
-
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    }));
+}
 var app = builder.Build();
 var scope = app.Services.CreateScope();
 var libraryContext = scope.ServiceProvider.GetService<Lanre.Module.Library.Infrastructure.Database.LibraryContext>();
@@ -59,6 +67,7 @@ app.UseCustomFixForHttps();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
+    app.UseCors("MyPolicy");
 }
 else
 {

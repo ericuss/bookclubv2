@@ -15,5 +15,6 @@ public static class Router
         app.MapGet(route + "/{id}", GetByIdVoteListEndpoint.Handle).RequireAuthorization();
         app.MapPost(route, CreateVoteListEndpoint.Handle).RequireAuthorization();
         app.MapPost(route + "/{id}/vote", VoteEndpoint.Handle).RequireAuthorization();
+        app.MapGet(route + "/{id}/awards", GetAwardsEndpoint.Handle).RequireAuthorization();
     }
 }
