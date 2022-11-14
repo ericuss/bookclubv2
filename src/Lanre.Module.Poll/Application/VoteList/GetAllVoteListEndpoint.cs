@@ -11,7 +11,11 @@ public static class GetAllVoteListEndpoint
         [FromServices] PollContext pollContext
     )
     {
-        var entities = await pollContext.VoteLists.ToListAsync();
+        var entities = await pollContext
+                                .VoteLists
+                                .Include(x => x.Books)
+                                .OrderByDescending(x => x.Created)
+                                .ToListAsync();
 
         return Results.Ok(entities.Select(Mapper.MapTo));
     }

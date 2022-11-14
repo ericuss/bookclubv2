@@ -17,6 +17,8 @@ public class VoteList
 
     public string UserId { get; internal set; }
 
+    public DateTimeOffset Created { get; internal set; } = DateTimeOffset.UtcNow;
+
     public List<BookOfVoteList> Books { get; internal set; } = new List<BookOfVoteList>();
 
     public List<Vote> Votes { get; internal set; } = new List<Vote>();

@@ -20,7 +20,7 @@ public class VoteEndpoint
     {
         var userId = contextAccessor.HttpContext?.User?.Identity?.Name;
 
-        if (string.IsNullOrWhiteSpace(dto.Id) || !Guid.TryParse(dto.Id, out var  votelistId)|| !dto.ReadedIds.Any())
+        if (string.IsNullOrWhiteSpace(dto.Id) || !Guid.TryParse(dto.Id, out var votelistId) || !dto.VotedIds.Any())
         {
             logs.LogWarning("Validation failed");
             return Results.BadRequest();
@@ -33,7 +33,7 @@ public class VoteEndpoint
             return Results.BadRequest();
         }
 
-        if (voteList.NumberOfVotes <= dto.VotedIds.Count)
+        if (dto.VotedIds.Count == 0 || dto.VotedIds.Count > voteList.NumberOfVotes)
         {
             logs.LogWarning($"voted {dto.VotedIds.Count} of {voteList.NumberOfVotes}");
             return Results.BadRequest();

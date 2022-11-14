@@ -13,6 +13,8 @@ internal static class Mapper
             Name = entity.Name,
             NumberOfVotes = entity.NumberOfVotes,
             UserId = entity.UserId,
+            NumberOfBooks = entity.Books.Count(),
+            Created = entity.Created,
         };
     }
 
@@ -25,6 +27,8 @@ internal static class Mapper
             NumberOfVotes = entity.NumberOfVotes,
             UserId = entity.UserId,
             Books = entity.Books.Select(MapTo).ToList(),
+            NumberOfBooks = entity.Books.Count(),
+            Created = entity.Created,
         };
     }
 
